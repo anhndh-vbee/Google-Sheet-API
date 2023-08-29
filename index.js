@@ -1,19 +1,12 @@
-const { google } = require("googleapis");
+const express = require("express");
+const router = require("./routes/routes");
 
-async function listMajors(auth) {
-  const sheets = google.sheets({ version: "v4", auth });
-  const res = await sheets.spreadsheets.values.get({
-    spreadsheetId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
-    range: "Class Data!A2:E",
-  });
-  const rows = res.data.values;
-  if (!rows || rows.length === 0) {
-    console.log("No data found.");
-    return;
-  }
-  console.log("Name, Major:");
-  rows.forEach((row) => {
-    // Print columns A and E, which correspond to indices 0 and 4.
-    console.log(`${row[0]}, ${row[4]}`);
-  });
-}
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(router);
+
+app.listen(8087, () => {
+  console.log("Server run");
+});

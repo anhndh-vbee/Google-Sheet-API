@@ -1,7 +1,7 @@
 const { google } = require("googleapis");
 const { authorize } = require("./configs/authorize");
 
-const create = async (title) => {
+const createSpreadSheet = async (title) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
   const resource = {
@@ -14,11 +14,21 @@ const create = async (title) => {
       resource,
       fields: "spreadsheetId",
     });
-    console.log(`Spreadsheet ID: ${spreadsheet.data.spreadsheetId}`);
     return spreadsheet.data.spreadsheetId;
   } catch (err) {
     throw err;
   }
 };
 
-create("test");
+// data from sheet pbi (dung function batchGetValues o file read.js)
+const createSheet = async (data) => {
+  const auth = await authorize();
+  const service = google.sheets({ version: "v4", auth });
+
+  // handle data
+};
+
+module.exports = {
+  createSpreadSheet,
+  createSheet,
+};
