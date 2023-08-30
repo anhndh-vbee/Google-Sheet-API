@@ -30,6 +30,28 @@ const createObjectFromTwoArr = (keys, values) => {
   return obj;
 };
 
+const getListMemberWithTask = async () => {
+  const data = await batchGetValues(
+    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
+  );
+  const result = data.reduce((acc, curr) => {
+    const existingEntry = acc.find((item) => item.Assignee === curr.Assignee);
+    const entryToAdd = { ...curr };
+    //   delete entryToAdd.Assignee;
+
+    if (existingEntry) {
+      existingEntry.task.push(entryToAdd);
+    } else {
+      acc.push({
+        Assignee: curr.Assignee,
+        task: [entryToAdd],
+      });
+    }
+    return acc;
+  }, []);
+  return result;
+};
+
 async function getValues(spreadsheetId, range) {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
@@ -78,4 +100,4 @@ async function batchGetValues(spreadsheetId) {
   }
 }
 
-module.exports = { batchGetValues, getValues };
+module.exports = { batchGetValues, getValues, getListMemberWithTask };
