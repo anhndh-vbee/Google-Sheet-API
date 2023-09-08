@@ -1,17 +1,27 @@
 const { createSheet } = require("../create");
-const { batchGetValues, getListMemberWithTask, getValues } = require("../read");
+const {
+  getDataFromSprintBacklog,
+  getListMemberWithTask,
+  getValues,
+  getDataFromPBI,
+  getDataFromSprintBacklogv2,
+} = require("../read");
 
 const readController = async (req, res) => {
-  // const result = await getValues(
-  //   "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4",
-  //   "Sprint Backlog #5!A8:X"
-  // );
-
-  // const result = await batchGetValues(
+  // get data from sheet sprint backlog #5 v1
+  // const result = await getDataFromSprintBacklog(
   //   "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
   // );
 
-  const result = await getListMemberWithTask();
+  // get data from sheet sprint backlog #5 v2
+  // const result = await getDataFromSprintBacklogv2(
+  //   "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
+  // );
+
+  // get data from sheet PBI
+  const result = await getDataFromPBI(
+    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
+  );
 
   return res.json(result);
 };

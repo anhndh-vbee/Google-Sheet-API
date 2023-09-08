@@ -1,6 +1,6 @@
 const { google } = require("googleapis");
 const { authorize } = require("./configs/authorize");
-const { getValues } = require("./read");
+const { getDataFromPBI } = require("./read");
 
 const createSpreadSheet = async (title) => {
   const auth = await authorize();
@@ -21,19 +21,13 @@ const createSpreadSheet = async (title) => {
   }
 };
 
-// data from sheet pbi (dung function getValues o file read.js)
 const createSheet = async () => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
-  // get data
-  const dataFromPBI = getValues(
-    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4",
-    "PBI!A:L"
+  const result = await getDataFromPBI(
+    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
   );
-
-  return dataFromPBI;
-  // handle data
 };
 
 module.exports = {
