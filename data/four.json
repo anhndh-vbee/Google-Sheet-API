@@ -10,7 +10,7 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "2"
+    "Priority": "2"
   },
   {
     "User Story Title": "Browse kịch bản theo thư mục",
@@ -20,8 +20,9 @@
     "Why": "dễ dàng hơn cho user trong việc xem hoặc tìm kiếm kịch bản trong phạm vi thư mục",
     "Acceptance Criteria": "- Browse theo thư mục. Một kịch bản sẽ nằm trong 1 thư mục. Do đó, user có thể browse kịch bản theo thư mục nhằm xem được danh sách các kịch bản trong 1 thư mục đã chọn.\n- Màn hình của kịch bản giống như thiết kế và đặc tả\n- Refactor mã nguồn trong quá trình làm",
     "Product Type": "AICall",
+    "Sprint": "#1",
     "Status": "To Do",
-    "Độ ưu tiên": "5"
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-890",
@@ -34,7 +35,7 @@
     "Product Type": "AICall",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-891",
@@ -47,7 +48,7 @@
     "Product Type": "AICall",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-917",
@@ -60,7 +61,7 @@
     "Product Type": "AICall",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-918",
@@ -73,7 +74,7 @@
     "Product Type": "AICall",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-919",
@@ -86,7 +87,7 @@
     "Product Type": "AICall",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-920 ",
@@ -99,7 +100,7 @@
     "Product Type": "AICall",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "User Story Title": "Xem danh sách chiến dịch",
@@ -111,7 +112,7 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "To Do",
-    "Độ ưu tiên": "4"
+    "Priority": "4"
   },
   {
     "Jira ID": "AIC-921",
@@ -123,7 +124,7 @@
     "Product Type": "Chung",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": " AIC-922",
@@ -135,7 +136,7 @@
     "Product Type": "Chung",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": " AIC-923",
@@ -147,9 +148,10 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
+    "User Story Title": "Test",
     "Story": "Là BO, tôi muốn phê duyệt các chiến dịch chạy ngoài giờ được phép chạy (7:00-21:00), để đảm bảo đúng quy định của pháp luật",
     "Who": "BO",
     "What": "phê duyệt các chiến dịch chạy ngoài giờ được phép chạy (7:00-21:00)",
@@ -157,7 +159,7 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "To Do",
-    "Độ ưu tiên": "3"
+    "Priority": "3"
   },
   {
     "Jira ID": "AIV-1785",
@@ -169,7 +171,7 @@
     "Product Type": "AIVoice",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIV-1786",
@@ -181,7 +183,7 @@
     "Product Type": "AIVoice",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIV-1787",
@@ -193,7 +195,7 @@
     "Product Type": "AIVoice",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-926",
@@ -205,7 +207,7 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "ATM-483",
@@ -218,7 +220,7 @@
     "Product Type": "Chung",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "ATM-485",
@@ -231,7 +233,7 @@
     "Product Type": "Chung",
     "Sprint": "#4",
     "Status": "Signed Off",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "ATM-488",
@@ -244,7 +246,7 @@
     "Product Type": "Chung",
     "Sprint": "#4",
     "Status": "To Do",
-    "Độ ưu tiên": "2"
+    "Priority": "2"
   },
   {
     "Jira ID": "ATM-487",
@@ -256,7 +258,7 @@
     "Product Type": "Chung",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "2"
+    "Priority": "2"
   },
   {
     "Jira ID": "AIC-911",
@@ -269,7 +271,7 @@
     "Product Type": "AICall",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-931",
@@ -282,7 +284,7 @@
     "Product Type": "Chung",
     "Sprint": "#4\n#5",
     "Status": "To Do",
-    "Độ ưu tiên": "2"
+    "Priority": "2"
   },
   {
     "Jira ID": "AIC-907",
@@ -294,7 +296,7 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-943",
@@ -306,27 +308,31 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
+    "User Story Title": "Test1",
     "Story": "Là BO, tôi muốn sửa lỗi chuyển văn bản khi ghép cả file, để tăng trải nghiệm của người dùng",
     "Who": "BO",
     "What": "sửa lỗi chuyển văn bản khi ghép cả file",
     "Why": "tăng trải nghiệm của người dùng",
     "Acceptance Criteria": "BO báo thành công các đoạn nhưng ghép cả file thì thất bại",
     "Product Type": "AICall",
+    "Sprint": "#1",
     "Status": "To Do",
-    "Độ ưu tiên": "3"
+    "Priority": "3"
   },
   {
+    "User Story Title": "Test2",
     "Story": "Là PO, tôi muốn sửa lỗi bị mất hoặc lẫn phần cuối của đoạn văn bản, để tăng trải nghiệm của người dùng",
     "Who": "PO",
     "What": "sửa lỗi bị mất hoặc lẫn phần cuối của đoạn văn bản",
     "Why": "tăng trải nghiệm của người dùng",
     "Acceptance Criteria": "Do bộ mã, VD: tiếng Việt trên Mac, khi không gõ đấu cách thì có thể không mất đấu gạch dưới dẫn đến không nhận từ cuối, hoặc bị lẫn từ cuối của lần chuyển văn bản trước đó",
     "Product Type": "AICall",
+    "Sprint": "#1",
     "Status": "To Do",
-    "Độ ưu tiên": "3"
+    "Priority": "3"
   },
   {
     "Jira ID": "AIC-930",
@@ -339,7 +345,7 @@
     "Product Type": "AICall",
     "Sprint": "#4",
     "Status": "To Do",
-    "Độ ưu tiên": "3"
+    "Priority": "3"
   },
   {
     "Jira ID": "AIV-1788",
@@ -352,7 +358,7 @@
     "Product Type": "AIVoice",
     "Sprint": "#4",
     "Status": "To Do",
-    "Độ ưu tiên": "3"
+    "Priority": "3"
   },
   {
     "Jira ID": "AIC-929",
@@ -363,8 +369,9 @@
     "Why": "nâng cao tải của hệ thống",
     "Acceptance Criteria": "- Gọi ra trên tổng đài đạt ngưỡng 1500 CCR\n- Báo cáo tải",
     "Product Type": "AICall",
+    "Sprint": "#1",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-928",
@@ -375,8 +382,9 @@
     "Why": "KH chạy chiến dịch được khi áp dụng KB mới",
     "Acceptance Criteria": "- Gọi ra thành công theo đúng kịch bản",
     "Product Type": "AICall",
+    "Sprint": "#1",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIC-x01",
@@ -388,7 +396,8 @@
     "Acceptance Criteria": "- Kịch bản được lưu vào phần kịch bản (của tôi) nếu trường đó được check\n- Nếu checkbox \"Lưu kịch bản\" được check thì sau khi user nhấn nút \"Lưu và tiếp tục\" thì hệ thống sẽ show pop-up yc điền thông tin kịch bản",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-x02",
@@ -400,7 +409,8 @@
     "Acceptance Criteria": "- Tối đa 5 tag, mỗi tag tối đa 50 kí tự\n- Tìm được kịch bản theo tag đã gắn",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-1900",
@@ -411,7 +421,9 @@
     "Why": "tìm kiếm và theo dõi chiến dịch",
     "Acceptance Criteria": "- Tìm kiếm theo trạng thái, tên, id chiến dịch, ngày tạo\n- Xem được các chỉ số của chiến dịch khi",
     "Product Type": "AICall",
-    "Status": "To Do"
+    "Sprint": "#1",
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-1901",
@@ -422,7 +434,9 @@
     "Why": "kiểm tra lại trước khi tạo chiến dịch",
     "Acceptance Criteria": "- Màn hình xem báo cáo giống với thiết kế và đặc tả\n- Thông tin chiến dịch chính xác",
     "Product Type": "AICall",
-    "Status": "To Do"
+    "Sprint": "#1",
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-1902",
@@ -434,7 +448,8 @@
     "Acceptance Criteria": "- Màn hình xem báo cáo giống với thiết kế và đặc tả\n- Số liệu thống kê chính xác",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-1903",
@@ -446,7 +461,8 @@
     "Acceptance Criteria": "- Giao diện cấu hình chiến dịch tuân theo thiết kế mới.\n- Các chức năng khi cấu hình vẫn phải hoạt động bình thường",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-2200",
@@ -457,7 +473,8 @@
     "Why": "khách hàng có thể chọn bot từ kịch bản",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-2201",
@@ -468,7 +485,9 @@
     "Why": "khách hàng trải nghiệm cuộc gọi tương tác bằng giọng nói",
     "Acceptance Criteria": "- Gọi ra thành công\n- Bot phản hồi dưới 2s\n- Kịch bản bot hoạt động đúng",
     "Product Type": "AICall",
-    "Status": "To Do"
+    "Sprint": "#1",
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-2202",
@@ -479,7 +498,8 @@
     "Why": "để dùng chung với kịch bản tích hợp bot",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-xxx",
@@ -491,7 +511,7 @@
     "Product Type": "AICall",
     "Sprint": "#5",
     "Status": "To Do",
-    "Độ ưu tiên": "1"
+    "Priority": "1"
   },
   {
     "Jira ID": "AIV-xyz",
@@ -502,7 +522,8 @@
     "Why": "không phải thực hiện reset token thủ công định kỳ",
     "Product Type": "AIVoice",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-x03",
@@ -513,7 +534,8 @@
     "Why": "cải thiện trải nghiệm người dùng",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIV-x05",
@@ -524,7 +546,8 @@
     "Why": "chặn người dùng có thể dùng vô hạn số ký tự trong ngày",
     "Product Type": "AIVoice",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIV-x06",
@@ -535,7 +558,8 @@
     "Why": "có thể thay thế đồng thời nhiều từ",
     "Product Type": "AIVoice",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIV-x07",
@@ -546,7 +570,8 @@
     "Why": "thêm ký tự cho người dùng Studio",
     "Product Type": "AIVoice",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIV-x08",
@@ -557,7 +582,8 @@
     "Why": "thêm ký tự cho người dùng API",
     "Product Type": "AIVoice",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "Jira ID": "AIC-2203",
@@ -568,100 +594,130 @@
     "Why": "chuẩn bị implement luồng gọi cho AI Call",
     "Product Type": "AICall",
     "Sprint": "#5",
-    "Status": "To Do"
+    "Status": "To Do",
+    "Priority": "5"
   },
   {
     "User Story Title": "Migrate kịch bản IVR theo thiết kế DB mới",
     "Story": "Là PO, tôi muốn Migrate kịch bản để có thể tích hợp callbot ",
     "Acceptance Criteria": "- API trả về cho frontend giữ nguyên cấu trúc\n- Lưu kịch bản theo thiết kế DB mới\n- Gọi ra thành công",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Tích hợp Bot bên SMD sang kịch bản",
     "Story": "Là Bot Manager, tôi muốn bot của AI Call tích hợp với kịch bản để có thể sử dụng Bot",
     "Acceptance Criteria": "- Lưu thông tin bot vào kịch bản",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Hiển thị và sử dụng version active của bot trên kịch bản",
     "Story": "Là PO, tôi muốn hiển thị và active version mới nhất của bot để cập nhật được bot mới nhất",
     "Acceptance Criteria": "- Hiển thị version hiện tại và version mới nhất\n- Actice được version mới nhất",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Tạo kịch bản loại Bot",
     "Story": "Là Bot Manager, tôi muốn tạo kịch bản Bot để có thể dùng Bot",
     "Acceptance Criteria": "- Tạo thành công kịch bản bot",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Xem các bot đã tích hợp",
     "Story": "Là Bot Manager, tôi muốn xem danh sách Bot của AI Call để tìm kiếm bot",
     "Acceptance Criteria": "- Xem và tìm kiếm theo tên bot\n- Filter theo trạng thái tích hợp (Chưa/Đang/Hoàn thành/ Lỗi)\n- Filter theo loại bot (PORTAL/ SYSTEM)",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Xóa các bot đã tích hợp",
     "Story": "Là Bot Manager, tôi muốn xóa Bot của AI Call để không muốn thấy",
     "Acceptance Criteria": "- Hiển thị số lượng kịch bản đang sử dụng bot\n- Xóa thành công và xóa liên kết giữa kịch bản và bot ",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Sửa các bot đã tích hợp",
     "Story": "Là Bot Manager, tôi muốn sửa Bot của AI Call để thay đổi thông tin của bot",
     "Acceptance Criteria": "- Sửa thành công bot",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Tích hợp bot với SMD",
     "Story": "Là Bot Manager, tôi muốn tích hợp Bot của AI Call với Bot SMD để có thể sử dụng bot",
     "Acceptance Criteria": "- Lưu thông tin bot SMD thành công\n- Cache TTS thành công\n- Xem được trạng thái tích hợp",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Gọi ra thành công với kịch bản Bot",
     "Story": "Là KH, tôi muốn gọi ra thành công với kịch bản sử dụng Bot",
     "Acceptance Criteria": "- Gọi ra thành công theo đúng luồng của Bot\n",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Xem kết quả cuộc gọi Bot",
     "Story": "Là KH, tôi muốn xem kết quả cuộc gọi bot để kiểm tra lại chất lượng bot",
     "Acceptance Criteria": "- Hiển thị luồng hội thoại của Bot với người nghe máy\n- Hiển thị các thông tin chi tiết của Bot (action code, drop step)",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Xuất báo của Bot",
     "Story": "Là KH, tôi muốn xuất báo cuộc gọi Bot để lấy dữ liệu đã gọi",
     "Acceptance Criteria": "- Xuất báo cáo thành công\n- Xuất đúng thông tin đã search",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Biểu đồ thống kê chất lượng Bot",
     "Story": "Là KH, tôi muốn xem biểu đồ thống kê kết quả của bot để theo dõi chất lượng bot",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "QC cuộc gọi",
     "Story": "Là KH, tôi muốn QC cuộc gọi để kiểm định chất lượng của Bot",
     "Acceptance Criteria": "- QC theo intent\n- QC theo ASR Intent\n- QC theo UserSay\n- QC theo Code/Sub Action Code",
     "Product Type": "AICall",
-    "Status": "Draft"
+    "Sprint": "#1",
+    "Status": "Draft",
+    "Priority": "5"
   },
   {
     "User Story Title": "Xuất báo cáo QC",
-    "Story": "Là KH, tôi muốn muốn xuất báo cáo QC của cuộc gọi để thống kê chất lượng bot"
+    "Story": "Là KH, tôi muốn muốn xuất báo cáo QC của cuộc gọi để thống kê chất lượng bot",
+    "Product Type": "AICall",
+    "Sprint": "#1",
+    "Priority": "5"
   }
 ]

@@ -1,11 +1,10 @@
-const { createSheet } = require("../create");
+const { createSheet } = require("../services/create");
 const {
   getDataFromSprintBacklog,
   getListMemberWithTask,
-  getValues,
   getDataFromPBI,
   getDataFromSprintBacklogv2,
-} = require("../read");
+} = require("../services/readDataFromSheet");
 
 const readController = async (req, res) => {
   // get data from sheet sprint backlog #5 v1

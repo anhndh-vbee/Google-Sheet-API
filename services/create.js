@@ -1,6 +1,6 @@
 const { google } = require("googleapis");
-const { authorize } = require("./configs/authorize");
-const { getDataFromPBI } = require("./read");
+const { authorize } = require("../configs/authorize");
+const { getDataFromPBI } = require("./readDataFromSheet");
 
 const createSpreadSheet = async (title) => {
   const auth = await authorize();

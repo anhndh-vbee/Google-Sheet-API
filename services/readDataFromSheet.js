@@ -1,34 +1,6 @@
-const { authorize } = require("./configs/authorize");
 const { google } = require("googleapis");
-
-// convert from [[..., key, ...], [...], [..., key, ...]] => {key: [...]}
-const convertData = (arr) => {
-  const groupedItems = {};
-
-  for (const subArr of arr) {
-    const value = subArr[2];
-
-    if (groupedItems.hasOwnProperty(value)) {
-      groupedItems[value].push(subArr);
-    } else {
-      groupedItems[value] = [subArr];
-    }
-  }
-  return groupedItems;
-};
-
-const createObjectFromTwoArr = (keys, values) => {
-  const obj = {};
-
-  keys.forEach((key, index) => {
-    const value = values[index];
-    if (value) {
-      obj[key] = value;
-    }
-  });
-
-  return obj;
-};
+const { authorize } = require("../configs/authorize");
+const { createObjectFromTwoArr } = require("../utils/createObjectFromTwoArr");
 
 const getListMemberWithTask = async () => {
   const data = await getDataFromSprintBacklog(
@@ -52,23 +24,6 @@ const getListMemberWithTask = async () => {
   return result;
 };
 
-async function getValues(spreadsheetId, range) {
-  const auth = await authorize();
-  const service = google.sheets({ version: "v4", auth });
-
-  try {
-    const result = await service.spreadsheets.values.get({
-      spreadsheetId,
-      range,
-    });
-    const data = result.data.values;
-    // const _result = convertData(data);
-    return data;
-  } catch (err) {
-    throw err;
-  }
-}
-
 const changeKeyObject = (obj) => {
   const updatedArray = obj.map((item) => {
     const updatedItem = { ...item };
@@ -91,7 +46,25 @@ const changeKeyObject = (obj) => {
   return updatedArray;
 };
 
-async function getDataFromSprintBacklog(spreadsheetId) {
+const listStoryWithTask = (inputArray) => {
+  let outputArray = [];
+  let currentGroup = null;
+
+  inputArray.forEach((item) => {
+    if (item.hasOwnProperty("User Story Title")) {
+      currentGroup = {
+        ...item,
+        task: [],
+      };
+      outputArray.push(currentGroup);
+    } else if (currentGroup) {
+      currentGroup.task.push(item);
+    }
+  });
+  return outputArray;
+};
+
+const getDataFromSprintBacklog = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
@@ -120,13 +93,13 @@ async function getDataFromSprintBacklog(spreadsheetId) {
   } catch (err) {
     throw err;
   }
-}
+};
 
-async function getDataFromPBI(spreadsheetId) {
+const getDataFromPBI = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
-  const range = "PBI!A:L";
+  const range = "Test!A:L";
 
   try {
     const result = await service.spreadsheets.values.get({
@@ -146,27 +119,9 @@ async function getDataFromPBI(spreadsheetId) {
   } catch (err) {
     throw err;
   }
-}
-
-const listStoryWithTask = (inputArray) => {
-  let outputArray = [];
-  let currentGroup = null;
-
-  inputArray.forEach((item) => {
-    if (item.hasOwnProperty("User Story Title")) {
-      currentGroup = {
-        ...item,
-        task: [],
-      };
-      outputArray.push(currentGroup);
-    } else if (currentGroup) {
-      currentGroup.task.push(item);
-    }
-  });
-  return outputArray;
 };
 
-async function getDataFromSprintBacklogv2(spreadsheetId) {
+const getDataFromSprintBacklogv2 = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
@@ -195,11 +150,10 @@ async function getDataFromSprintBacklogv2(spreadsheetId) {
   } catch (err) {
     throw err;
   }
-}
+};
 
 module.exports = {
   getDataFromSprintBacklog,
-  getValues,
   getListMemberWithTask,
   getDataFromPBI,
   getDataFromSprintBacklogv2,
