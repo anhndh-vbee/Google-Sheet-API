@@ -10,9 +10,7 @@ const validateData = async () => {
       "Due Date",
       "Story",
       "Status",
-      "Note",
     ];
-    let rowIndex = 8;
     for (const entry of jsonData) {
       if (entry.task && Array.isArray(entry.task)) {
         let hasAssigneeTime = false;
@@ -22,15 +20,14 @@ const validateData = async () => {
               hasAssigneeTime = true;
             } else {
               hasAssigneeTime = false;
-              break;
             }
           }
-          rowIndex++;
-          if (!hasAssigneeTime) {
-            console.log("Có người đã điền nhầm thời gian ở dòng:", rowIndex);
+          if (hasAssigneeTime) {
+            console.log("True");
+          } else {
+            console.log("False");
           }
         }
-        rowIndex++;
       }
     }
   } catch (error) {
