@@ -25,9 +25,4 @@ const readController = async (req, res) => {
   return res.json(result);
 };
 
-const createController = async (req, res) => {
-  const result = await createSheet();
-  return res.json(result);
-};
-
-module.exports = { readController, createController };
+module.exports = { readController };

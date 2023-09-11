@@ -15,4 +15,10 @@ function splitArrayBySize(array, size) {
   return result;
 }
 
-module.exports = { splitArrayBySize };
+// arr = [ [ {key:val1, ... }, {key:val2, ... } ], [...], [...]] => [val1, val2, ...]
+function flatArrayToGetJiraID(arr) {
+  const result = arr.flatMap((subArr) => subArr.map((item) => item["Jira ID"]));
+  return result;
+}
+
+module.exports = { splitArrayBySize, flatArrayToGetJiraID };

@@ -125,11 +125,7 @@ const getDataFromSprintBacklogv2 = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
-  let ranges = [
-    "Sprint Backlog #5!5:5",
-    "Sprint Backlog #5!M4:X4",
-    "Sprint Backlog #5!A8:X",
-  ];
+  let ranges = ["SB5!5:5", "SB5!M4:X4", "SB5!A8:X"];
 
   try {
     const result = await service.spreadsheets.values.batchGet({
