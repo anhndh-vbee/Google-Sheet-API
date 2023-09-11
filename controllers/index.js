@@ -30,11 +30,6 @@ const readSBController = async (req, res) => {
     "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
   );
   return res.json(result);
-}
-
-const createController = async (req, res) => {
-  const result = await createSheet();
-  return res.json(result);
 };
 
-module.exports = { readController, readSBController, createController };
+module.exports = { readController, readSBController };

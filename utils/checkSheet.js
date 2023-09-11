@@ -1,17 +1,8 @@
-const keysOfPBI = [
-  "Jira ID",
-  "User Story Title",
-  "Story",
-  "Product Type",
-  "Sprint",
-  "Priority",
-];
-
-const checkPBI = (data) => {
+const checkSheet = (data, keys) => {
   // danh sách item thiếu key
   const rowMissingKey = data
     .map((row, index) => {
-      const missingKeys = keysOfPBI.filter((key) => !row.hasOwnProperty(key));
+      const missingKeys = keys.filter((key) => !row.hasOwnProperty(key));
 
       // nếu key 'Jira ID' bị thiếu thì tạo key và gán giá trị mặc định là ''
       if (missingKeys.includes("Jira ID")) {
@@ -25,7 +16,7 @@ const checkPBI = (data) => {
 
   if (
     rowMissingKey.length === 0 ||
-    rowMissingKey.every((row) => row.missingKeys.includes("Sprint"))
+    rowMissingKey.every((row) => row.missingKeys.includes("Jira ID"))
   ) {
     return data;
   } else {
@@ -39,4 +30,4 @@ const checkPBI = (data) => {
   }
 };
 
-module.exports = { checkPBI };
+module.exports = { checkSheet };
