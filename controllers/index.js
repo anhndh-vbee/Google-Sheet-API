@@ -25,9 +25,16 @@ const readController = async (req, res) => {
   return res.json(result);
 };
 
+const readSBController = async (req, res) => {
+  const result = await getDataFromSprintBacklogv2(
+    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
+  );
+  return res.json(result);
+}
+
 const createController = async (req, res) => {
   const result = await createSheet();
   return res.json(result);
 };
 
-module.exports = { readController, createController };
+module.exports = { readController, readSBController, createController };
