@@ -1,19 +1,15 @@
 const fetch = require("node-fetch");
-const dotenv = require("dotenv");
 const {
   getDataFromSprintBacklog,
   getDataFromPBI,
 } = require("./readDataFromSheet");
 const {
   splitArrayBySize,
-  flatArrayToGetJiraID,
+  flatArrayToGetValueByKey,
 } = require("../utils/arrayUtils");
 const constants = require("../configs/constants");
 const { checkSheet } = require("../utils/checkSheet");
 const { writJiraIDForSheetPBI } = require("./writeDataToSheet");
-const { checkValidId } = require("./checkValidIssue");
-
-dotenv.config();
 
 // bulk stories
 const createStories = async (data) => {
@@ -138,7 +134,7 @@ const createStoriesFromPBI = async () => {
     const result = await Promise.all(
       listInputData.map((data) => createStories(data))
     );
-    let listJiraID = flatArrayToGetJiraID(result);
+    let listJiraID = flatArrayToGetValueByKey(result, "Jira ID");
     await writJiraIDForSheetPBI(listJiraID);
     return listJiraID;
   } else {

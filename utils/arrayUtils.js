@@ -1,9 +1,8 @@
-/* Convert array have many item to an array that each item in it have a specific size
+/**
  *
- * const largerArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,...]
- * const smallerArrays = splitArrayIntoChunks(largerArray, 7);
- * => [[1, 2, 3, 4, 5, 6, 7], [ 8, 9, 10 ]]
- *
+ * @param {*} array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,...]
+ * @param {*} size = 7
+ * @returns [[1, 2, 3, 4, 5, 6, 7], [ 8, 9, 10 ]]
  */
 
 function splitArrayBySize(array, size) {
@@ -20,28 +19,54 @@ function splitArrayBySize(array, size) {
  * @returns [val1, val2, ...]
  */
 
-function flatArrayToGetJiraID(arr) {
-  const result = arr.flatMap((subArr) => subArr.map((item) => item["Jira ID"]));
+function flatArrayToGetValueByKey(arr, key) {
+  const result = arr.flatMap((subArr) => subArr.map((item) => item[`${key}`]));
   return result;
 }
 
 /**
  *
- * @param {*} originListStoryWithSubtask
- * @param {*} newListSubTaskAfterCreated
+ * @param {*} originArr = [{..., task: ["Jira ID": "..."]}, {...}]
+ * @param {*} arrNeedMerged  = [[{"Jira ID" : "...", ... }], ...]
+ * @param {*} key
+ * @returns  Copy each subitem in each item of arrNeedMerged to field task in originArr
+ */
+
+function mergeArrayWithKey(originArr, arrNeedMerged, key) {
+  const newArr = originArr.map((item, index) => ({
+    ...item,
+    [key]: arrNeedMerged[index].map((subtask) => ({
+      ...subtask,
+    })),
+  }));
+  return newArr;
+}
+
+/**
+ *
+ * @param {*} data
+ * @param {*} key
+ * @param {*} fieldWantToGet
  * @returns
  */
 
-function combineArray(originListStoryWithSubtask, newListSubTaskAfterCreated) {
-  const newListStoryWithSubtask = originListStoryWithSubtask.map(
-    (story, index) => ({
-      ...story,
-      task: newListSubTaskAfterCreated[index].map((subtask) => ({
-        ...subtask,
-      })),
-    })
-  );
-  return newListStoryWithSubtask;
+function extractFieldAndGetValueByKey(data, key, fieldWantToGet) {
+  const newArr = data.reduce((ids, item) => {
+    ids.push(item[key]);
+    if (item[fieldWantToGet]) {
+      const subItem = item[fieldWantToGet]
+        .filter((smItem) => smItem[key])
+        .map((smItem) => smItem[key]);
+      ids.push(...subItem);
+    }
+    return ids;
+  }, []);
+  return newArr;
 }
 
-module.exports = { splitArrayBySize, flatArrayToGetJiraID, combineArray };
+module.exports = {
+  splitArrayBySize,
+  flatArrayToGetValueByKey,
+  mergeArrayWithKey,
+  extractFieldAndGetValueByKey,
+};
