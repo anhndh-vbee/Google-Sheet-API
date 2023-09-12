@@ -64,37 +64,6 @@ const listStoryWithTask = (inputArray) => {
   return outputArray;
 };
 
-const getDataFromSprintBacklog = async (spreadsheetId) => {
-  const auth = await authorize();
-  const service = google.sheets({ version: "v4", auth });
-
-  let ranges = [
-    "Sprint Backlog #5!5:5",
-    "Sprint Backlog #5!M4:X4",
-    "Sprint Backlog #5!A8:X",
-  ];
-
-  try {
-    const result = await service.spreadsheets.values.batchGet({
-      spreadsheetId,
-      ranges,
-    });
-    const data = result.data.valueRanges.map((range) => range.values);
-
-    // danh sach header file sheet
-    const header = data[0][0];
-    header.push(...data[1][0]);
-
-    // data
-    const value = data[2];
-    const _value = value.map((item) => createObjectFromTwoArr(header, item));
-
-    return _value;
-  } catch (err) {
-    throw err;
-  }
-};
-
 const getDataFromPBI = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
@@ -121,7 +90,7 @@ const getDataFromPBI = async (spreadsheetId) => {
   }
 };
 
-const getDataFromSprintBacklogv2 = async (spreadsheetId) => {
+const getDataFromSprintBacklog = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
@@ -149,8 +118,7 @@ const getDataFromSprintBacklogv2 = async (spreadsheetId) => {
 };
 
 module.exports = {
-  getDataFromSprintBacklog,
   getListMemberWithTask,
   getDataFromPBI,
-  getDataFromSprintBacklogv2,
+  getDataFromSprintBacklog,
 };

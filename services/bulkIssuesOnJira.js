@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const dotenv = require("dotenv");
 const {
-  getDataFromSprintBacklogv2,
+  getDataFromSprintBacklog,
   getDataFromPBI,
 } = require("./readDataFromSheet");
 const {
@@ -11,6 +11,7 @@ const {
 const constants = require("../configs/constants");
 const { checkSheet } = require("../utils/checkSheet");
 const { writJiraIDForSheetPBI } = require("./writeDataToSheet");
+const { checkValidId } = require("./checkValidIssue");
 
 dotenv.config();
 
@@ -79,19 +80,17 @@ const createSubtasks = async (data, parentId) => {
       issuetype: {
         id: "10005",
       },
+      summary: "Subtask",
       parent: {
         key: `${parentId}`,
       },
       assignee: {
         name: item["Assignee"],
       },
-      summary: item["User Story Title"],
       description: item["Story"],
-      priority: {
-        id: item["Priority"],
-      },
     },
   }));
+
   const bodyData = `${JSON.stringify({
     issueUpdates: listIssues,
   })}`;
@@ -111,14 +110,19 @@ const createSubtasks = async (data, parentId) => {
       },
       body: bodyData,
     }
-  ).then(async (response) => {
-    const res = await response.json();
-    const listIssueCreated = res.issues;
-    for (let i = 0; i < cloneData.length; i++) {
-      cloneData[i]["Jira ID"] = listIssueCreated[i]["key"];
-    }
-    return cloneData;
-  });
+  )
+    .then(async (response) => {
+      const res = await response.json();
+      const listIssueCreated = res.issues;
+
+      for (let i = 0; i < cloneData.length; i++) {
+        cloneData[i]["Jira ID"] = listIssueCreated[i]["key"];
+      }
+      return cloneData;
+    })
+    .catch((error) => {
+      throw error;
+    });
   // end call api
 
   return result;
@@ -142,18 +146,20 @@ const createStoriesFromPBI = async () => {
   }
 };
 
-createStoriesFromPBI();
-
 const createIssuesFromSprintBacklog = async () => {
-  const data = await getDataFromSprintBacklogv2(constants.SHEETID);
+  const data = await getDataFromSprintBacklog(constants.SHEETID);
   const check = checkSheet(data, constants.KEYSPRINTBACKLOG);
 
   if (check) {
     const listInputData = splitArrayBySize(check, 25);
     const result = await Promise.all(
-      listInputData.map((data) => createSubtasks(data?.task, data["Jira ID"]))
+      listInputData.map((stories) => {
+        return Promise.all(
+          stories.map((story) => createSubtasks(story.task, story["Jira ID"]))
+        );
+      })
     );
-    return result;
+    return result[0];
   }
 };
 
