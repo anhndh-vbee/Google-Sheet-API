@@ -9,7 +9,7 @@ const {
 } = require("../utils/arrayUtils");
 const constants = require("../configs/constants");
 const { checkSheet } = require("../utils/checkSheet");
-const { writJiraIDForSheetPBI } = require("./writeDataToSheet");
+const { writeJiraIDForSheetPBI } = require("./writeDataToSheet");
 
 // bulk stories
 const createStories = async (data) => {
@@ -129,13 +129,13 @@ const createStoriesFromPBI = async () => {
 
   const check = checkSheet(value, constants.KEYPBI);
 
-  if (check) {
+  if (typeof check === "object") {
     const listInputData = splitArrayBySize(check, 25);
     const result = await Promise.all(
       listInputData.map((data) => createStories(data))
     );
     let listJiraID = flatArrayToGetValueByKey(result, "Jira ID");
-    await writJiraIDForSheetPBI(listJiraID);
+    await writeJiraIDForSheetPBI(listJiraID);
     return listJiraID;
   } else {
     return "Not ok";
@@ -146,7 +146,7 @@ const createIssuesFromSprintBacklog = async () => {
   const data = await getDataFromSprintBacklog(constants.SHEETID);
   const check = checkSheet(data, constants.KEYSPRINTBACKLOG);
 
-  if (check) {
+  if (typeof check === "object") {
     const listInputData = splitArrayBySize(check, 25);
     const result = await Promise.all(
       listInputData.map((stories) => {

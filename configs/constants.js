@@ -22,11 +22,17 @@ const keysOfSprintBacklog = [
   "Priority",
 ];
 
+const story = "story";
+const subtask = "subtask";
+
 module.exports = {
   DOMAIN: process.env.DOMAIN,
   APIKEY: process.env.APIKEY,
   SHEETID: process.env.SHEETID,
   EMAIL: process.env.EMAIL,
+  PASS_EMAIL: process.env.PASS_EMAIL,
   KEYPBI: keysOfPBI,
   KEYSPRINTBACKLOG: keysOfSprintBacklog,
+  STORY: story,
+  SUBTASK: subtask,
 };

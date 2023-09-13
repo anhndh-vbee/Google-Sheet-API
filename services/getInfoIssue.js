@@ -16,10 +16,20 @@ const getIssue = (id) => {
         },
       }
     )
-      .then((response) => {
-        return response.json();
+      .then(async (response) => {
+        const res = await response.json();
+        if (res.errorMessages) {
+          return false;
+        }
+        return res;
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        throw err;
+      });
+
+    if (result.errorMessages) {
+      return false;
+    }
     return result;
   } else {
     return false;

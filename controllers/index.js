@@ -19,12 +19,12 @@ const readController = async (req, res) => {
   // );
 
   // get data from sheet PBI
-  // const result = await getDataFromPBI(
-  //   "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
-  // );
+  const result = await getDataFromPBI(
+    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
+  );
 
   // test create subtask
-  const result = await createIssuesFromSprintBacklog();
+  // const result = await createIssuesFromSprintBacklog();
   return res.json(result);
 };
 
