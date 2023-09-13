@@ -20,7 +20,7 @@ const sendMail = async (email, content, sheetName) => {
       html: `${content}`,
     });
   } else {
-    console.log("Missing required parameter when send email");
+    console.log("Missing required parameter when sending email");
   }
 };
 

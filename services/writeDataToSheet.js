@@ -25,13 +25,26 @@ const writeJiraIDForSheetPBI = async (data) => {
   }
 };
 
-const writeJiraIDForSheetSprintBacklog = async () => {
+const writeJiraIDForSheetSprintBacklog = async (data) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
   const spreadsheetId = constants.SHEETID;
 
   if (data && data.length > 0) {
+    let values = data?.map((item) => [item]);
+    let range = `TestSB!A8:A${data?.length + 7}`;
+
+    try {
+      await service.spreadsheets.values.update({
+        spreadsheetId,
+        range,
+        valueInputOption: "RAW",
+        resource: { values },
+      });
+    } catch (err) {
+      throw err;
+    }
   }
 };
 

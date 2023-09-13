@@ -41,19 +41,19 @@ const cronJobOnPBI = async () => {
   return;
 };
 
-const date = new Date();
-
 const cronJob = new cron.CronJob("*/30 * * * *", async () => {
+  const startDate = new Date();
   console.log(
-    `Cron Job on PBI start at ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${date.getDate()}-${
-      date.getMonth() + 1
-    }-${date.getFullYear()}`
+    `Cron Job on PBI start at ${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()} ${startDate.getDate()}-${
+      startDate.getMonth() + 1
+    }-${startDate.getFullYear()}`
   );
   await cronJobOnPBI();
+  const endDate = new Date();
   console.log(
-    `Cron Job on PBI end at ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${date.getDate()}-${
-      date.getMonth() + 1
-    }-${date.getFullYear()}`
+    `Cron Job on PBI end at ${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()} ${endDate.getDate()}-${
+      endDate.getMonth() + 1
+    }-${endDate.getFullYear()}`
   );
 });
 

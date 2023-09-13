@@ -2,6 +2,11 @@ const fetch = require("node-fetch");
 const constants = require("../configs/constants");
 const { checkValidId } = require("./checkValidIssue");
 
+/**
+ *
+ * @param {*} id
+ * @returns if id is valid and issue exists, return object else return false
+ */
 const getIssue = (id) => {
   if (checkValidId(id)) {
     const result = fetch(

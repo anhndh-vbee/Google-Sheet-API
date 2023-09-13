@@ -1,11 +1,4 @@
-const constants = require("./configs/constants");
-const { createIssue } = require("./services/createIssueOnJira");
-const { getIssue } = require("./services/getInfoIssue");
-const { getDataFromPBI } = require("./services/readDataFromSheet");
-const { writeJiraIDForSheetPBI } = require("./services/writeDataToSheet");
-const { checkSheet } = require("./utils/checkSheet");
-
-const _data = [
+const data = [
   {
     "Jira ID": "SCRUM-390",
     "User Story Title": "Điều chỉnh giọng đọc",
@@ -346,42 +339,4 @@ const _data = [
   },
 ];
 
-const checkAndCreateIssue = async (value) => {
-  const issueIds = [];
-
-  for (const item of value) {
-    const id = item["Jira ID"];
-    const issueInfo = await getIssue(id);
-
-    if (issueInfo === false) {
-      const newIssue = await createIssue(item, constants.STORY);
-      issueIds.push({ oldId: id, newId: newIssue.key });
-    } else if (issueInfo) {
-      issueIds.push({ oldId: id, newId: id });
-    }
-  }
-
-  return issueIds;
-};
-
-const cronJobOnPBI = async () => {
-  const data = await getDataFromPBI(constants.SHEETID);
-  const check = checkSheet(data, constants.KEYPBI);
-
-  if (check) {
-    const res = await checkAndCreateIssue(data);
-    if (res && res.length > 0) {
-      const newListJiraID = res.map((item) => item.newId || item.oldId);
-      console.log(newListJiraID);
-      writeJiraIDForSheetPBI(newListJiraID);
-    }
-  }
-};
-const test = async () => {
-  const res = await cronJobOnPBI();
-  console.log(1);
-};
-
-test();
-
-module.exports = _data;
+module.exports = data;

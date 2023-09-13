@@ -26,12 +26,6 @@ const checkSheet = (data, keys) => {
   ) {
     return data;
   } else {
-    // console.log("Some rows have missed some required keys:");
-    // rowMissingKey.forEach((row) => {
-    //   console.log(
-    //     `Row ${row.index + 2} miss value of ${row.missingKeys.join(", ")}`
-    //   );
-    // });
     const errorMessages = rowMissingKey.map((row) => {
       return `Row ${row.index + 2} missing value of ${row.missingKeys.join(
         ", "
