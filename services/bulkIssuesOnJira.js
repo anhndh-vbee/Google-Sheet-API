@@ -6,10 +6,15 @@ const {
 const {
   splitArrayBySize,
   flatArrayToGetValueByKey,
+  mergeArrayWithKey,
+  extractFieldAndGetValueByKey,
 } = require("../utils/arrayUtils");
 const constants = require("../configs/constants");
 const { checkSheet } = require("../utils/checkSheet");
-const { writeJiraIDForSheetPBI } = require("./writeDataToSheet");
+const {
+  writeJiraIDForSheetPBI,
+  writeJiraIDForSheetSprintBacklog,
+} = require("./writeDataToSheet");
 
 // bulk stories
 const createStories = async (data) => {
@@ -155,7 +160,22 @@ const createIssuesFromSprintBacklog = async () => {
         );
       })
     );
-    return result[0];
+    // return result[0];
+    if (result && result[0].length > 0) {
+      const updateSprintBacklog = mergeArrayWithKey(
+        check,
+        result[0],
+        "Jira ID"
+      );
+      const listJiraID = extractFieldAndGetValueByKey(
+        updateSprintBacklog,
+        "Jira ID",
+        "task"
+      );
+      if (listJiraID && listJiraID.length > 0) {
+        writeJiraIDForSheetSprintBacklog(listJiraID);
+      }
+    }
   }
 };
 
