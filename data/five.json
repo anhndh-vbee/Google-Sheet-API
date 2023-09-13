@@ -1,0 +1,15 @@
+{
+  "field": {
+    "project": {
+      "id": "10000"
+    },
+    "issuetype": {
+      "id": "10001"
+    },
+    "summary": "Tắt bật hạ tầng AICall",
+    "description": "Là PO, tôi muốn tắt bật hạ tầng AICall, để giảm chi phí hạ tầng vào các thời điểm khách hàng không chạy",
+    "priority": {
+      "id": "1"
+    }
+  }
+}

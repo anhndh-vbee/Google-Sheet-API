@@ -3,7 +3,7 @@ const { authorize } = require("../configs/authorize");
 const constants = require("../configs/constants");
 
 /** data = [...] */
-const writJiraIDForSheetPBI = async (data) => {
+const writeJiraIDForSheetPBI = async (data) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
@@ -35,4 +35,4 @@ const writeJiraIDForSheetSprintBacklog = async () => {
   }
 };
 
-module.exports = { writJiraIDForSheetPBI, writeJiraIDForSheetSprintBacklog };
+module.exports = { writeJiraIDForSheetPBI, writeJiraIDForSheetSprintBacklog };
