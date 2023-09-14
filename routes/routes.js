@@ -1,8 +1,13 @@
 const express = require("express");
-const { readController, readSBController } = require("../controllers");
+const {
+  bulkCreateStoriesPBI,
+  readSBController,
+  bulkCreateSubtask,
+} = require("../controllers");
 const router = express.Router();
 
-router.get("/read", readController);
-// router.get("/test", createController);
+router.get("/PBI", bulkCreateStoriesPBI);
+router.get("/SB", bulkCreateSubtask);
 router.get("/read/sb", readSBController);
+
 module.exports = router;

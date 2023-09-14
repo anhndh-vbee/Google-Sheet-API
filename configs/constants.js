@@ -11,7 +11,7 @@ const keysOfPBI = [
   "Priority",
 ];
 
-const keysOfSprintBacklog = [
+const keysOfSprintBacklogStory = [
   "Jira ID",
   "Issue Type",
   "Assignee",
@@ -20,6 +20,14 @@ const keysOfSprintBacklog = [
   "Story",
   "Status",
   "Priority",
+];
+
+const keysOfSprintBacklogSubtask = [
+  "Issue Type",
+  "Assignee",
+  "Story",
+  "Status",
+  "Note",
 ];
 
 const story = "story";
@@ -32,7 +40,8 @@ module.exports = {
   EMAIL: process.env.EMAIL,
   PASS_EMAIL: process.env.PASS_EMAIL,
   KEYPBI: keysOfPBI,
-  KEYSPRINTBACKLOG: keysOfSprintBacklog,
+  KEYSPRINTBACKLOG: keysOfSprintBacklogStory,
+  KEYSUBTASK: keysOfSprintBacklogSubtask,
   STORY: story,
   SUBTASK: subtask,
 };

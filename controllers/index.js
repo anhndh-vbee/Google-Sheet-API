@@ -1,30 +1,18 @@
 const {
   createIssuesFromSprintBacklog,
+  createStoriesFromPBI,
 } = require("../services/bulkIssuesOnJira");
-const {
-  getListMemberWithTask,
-  getDataFromPBI,
-  getDataFromSprintBacklog,
-} = require("../services/readDataFromSheet");
+const { getDataFromSprintBacklog } = require("../services/readDataFromSheet");
 
-const readController = async (req, res) => {
-  // get data from sheet sprint backlog #5 v1
-  // const result = await getDataFromSprintBacklog(
-  //   "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
-  // );
+const bulkCreateStoriesPBI = async (req, res) => {
+  // create story in sheet PBI
+  const result = await createStoriesFromPBI();
+  return res.json(result);
+};
 
-  // get data from sheet sprint backlog #5 v2
-  // const result = await getDataFromSprintBacklog(
-  //   "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
-  // );
-
-  // get data from sheet PBI
-  const result = await getDataFromPBI(
-    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
-  );
-
-  // test create subtask
-  // const result = await createIssuesFromSprintBacklog();
+const bulkCreateSubtask = async (req, res) => {
+  // create subtask in sheet Sprint Backlog
+  const result = await createIssuesFromSprintBacklog();
   return res.json(result);
 };
 
@@ -35,4 +23,4 @@ const readSBController = async (req, res) => {
   return res.json(result);
 };
 
-module.exports = { readController, readSBController };
+module.exports = { bulkCreateStoriesPBI, readSBController, bulkCreateSubtask };

@@ -175,6 +175,7 @@ const createIssuesFromSprintBacklog = async () => {
       if (listJiraID && listJiraID.length > 0) {
         writeJiraIDForSheetSprintBacklog(listJiraID);
       }
+      return "OK";
     }
   }
 };

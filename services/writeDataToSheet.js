@@ -2,7 +2,6 @@ const { google } = require("googleapis");
 const { authorize } = require("../configs/authorize");
 const constants = require("../configs/constants");
 
-/** data = [...] */
 const writeJiraIDForSheetPBI = async (data) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });

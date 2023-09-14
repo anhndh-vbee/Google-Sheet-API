@@ -1,17 +1,10 @@
 const axios = require("axios");
+
 const validateData = async () => {
   try {
     const response = await axios.get("http://localhost:8087/read/sb");
     const jsonData = response.data;
-    const checkData = [
-      "Jira ID",
-      "Issue Type",
-      "Assignee",
-      "Due Date",
-      "Story",
-      "Status",
-      "Note",
-    ];
+    const checkData = ["Issue Type", "Assignee", "Story", "Status", "Note"];
     let rowIndex = 8;
     for (const entry of jsonData) {
       if (entry.task && Array.isArray(entry.task)) {

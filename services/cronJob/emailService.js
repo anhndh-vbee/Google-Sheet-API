@@ -24,6 +24,4 @@ const sendMail = async (email, content, sheetName) => {
   }
 };
 
-// sendMail("hoanganh.axe.no.1@gmail.com", "test", "PBI");
-
 module.exports = { sendMail };

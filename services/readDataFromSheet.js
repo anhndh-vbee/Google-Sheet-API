@@ -2,28 +2,6 @@ const { google } = require("googleapis");
 const { authorize } = require("../configs/authorize");
 const { createObjectFromTwoArr } = require("../utils/createObjectFromTwoArr");
 
-const getListMemberWithTask = async () => {
-  const data = await getDataFromSprintBacklog(
-    "1-cYPOdl1XXs5RgF0rbCJaHwAicuBffGMf-kmxMJT-S4"
-  );
-  const result = data.reduce((acc, curr) => {
-    const existingEntry = acc.find((item) => item.Assignee === curr.Assignee);
-    const entryToAdd = { ...curr };
-    //   delete entryToAdd.Assignee;
-
-    if (existingEntry) {
-      existingEntry.task.push(entryToAdd);
-    } else {
-      acc.push({
-        Assignee: curr.Assignee,
-        task: [entryToAdd],
-      });
-    }
-    return acc;
-  }, []);
-  return result;
-};
-
 const changeKeyObject = (obj) => {
   const updatedArray = obj.map((item) => {
     const updatedItem = { ...item };
@@ -94,7 +72,7 @@ const getDataFromSprintBacklog = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
-  let ranges = ["SB5!5:5", "SB5!M4:X4", "SB5!A8:X"];
+  let ranges = ["TestSB!5:5", "TestSB!M4:X4", "TestSB!A8:X"];
 
   try {
     const result = await service.spreadsheets.values.batchGet({
@@ -118,7 +96,6 @@ const getDataFromSprintBacklog = async (spreadsheetId) => {
 };
 
 module.exports = {
-  getListMemberWithTask,
   getDataFromPBI,
   getDataFromSprintBacklog,
 };
