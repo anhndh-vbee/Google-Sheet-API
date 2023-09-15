@@ -6,7 +6,7 @@ const createIssue = async (data, typeIssue, parentID) => {
     issue = {
       fields: {
         project: {
-          id: "10000",
+          id: `${constants.PROJECTID}`,
         },
         issuetype: {
           id: "10005",
@@ -25,7 +25,7 @@ const createIssue = async (data, typeIssue, parentID) => {
     issue = {
       fields: {
         project: {
-          id: "10000",
+          id: `${constants.PROJECTID}`,
         },
         issuetype: {
           id: "10001",

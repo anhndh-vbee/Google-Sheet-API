@@ -23,8 +23,10 @@ const keysOfSprintBacklogStory = [
 ];
 
 const keysOfSprintBacklogSubtask = [
+  "Jira ID",
   "Issue Type",
   "Assignee",
+  "Due Date",
   "Story",
   "Status",
   "Note",
@@ -39,6 +41,7 @@ module.exports = {
   SHEETID: process.env.SHEETID,
   EMAIL: process.env.EMAIL,
   PASS_EMAIL: process.env.PASS_EMAIL,
+  PROJECTID: process.env.PROJECT_ID,
   KEYPBI: keysOfPBI,
   KEYSPRINTBACKLOG: keysOfSprintBacklogStory,
   KEYSUBTASK: keysOfSprintBacklogSubtask,

@@ -24,7 +24,7 @@ const createStories = async (data) => {
   const listIssues = data.map((item) => ({
     fields: {
       project: {
-        id: "10000",
+        id: `${constants.PROJECTID}`,
       },
       issuetype: {
         id: "10001",
@@ -76,7 +76,7 @@ const createSubtasks = async (data, parentId) => {
   const listIssues = data.map((item) => ({
     fields: {
       project: {
-        id: "10000",
+        id: `${constants.PROJECTID}`,
       },
       issuetype: {
         id: "10005",
@@ -162,11 +162,7 @@ const createIssuesFromSprintBacklog = async () => {
     );
     // return result[0];
     if (result && result[0].length > 0) {
-      const updateSprintBacklog = mergeArrayWithKey(
-        check,
-        result[0],
-        "Jira ID"
-      );
+      const updateSprintBacklog = mergeArrayWithKey(check, result[0], "task");
       const listJiraID = extractFieldAndGetValueByKey(
         updateSprintBacklog,
         "Jira ID",

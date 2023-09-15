@@ -1,37 +1,32 @@
 const constants = require("../../configs/constants");
-const { getDataFromSprintBacklog } = require("../readDataFromSheet");
 
-const validateSubtask = async () => {
-  let errMsg = "";
-  try {
-    const data = await getDataFromSprintBacklog(constants.SHEETID);
-    const listKeys = constants.KEYSUBTASK;
+const validateSubtask = (data) => {
+  if (data && data.length > 0) {
+    const checkKeys = constants.KEYSUBTASK;
     let rowIndex = 8;
-    if (data && data.length > 0) {
-      for (const entry of data) {
-        if (entry.task && Array.isArray(entry.task)) {
-          let hasAssigneeTime = false;
-          for (const task of entry.task) {
-            for (const key of Object.keys(task)) {
-              if (listKeys.includes(key) || key === task.Assignee) {
-                hasAssigneeTime = true;
-              } else {
-                hasAssigneeTime = false;
-                break;
-              }
-            }
-            rowIndex++;
-            if (!hasAssigneeTime) {
-              //   console.log("Có người đã điền nhầm thời gian ở dòng:", rowIndex);
-              errMsg += `Có người đã điền nhầm thời gian ở dòng: ${rowIndex}`;
+    let arrErrorMsg = [];
+    for (const story of data) {
+      if (story.task && Array.isArray(story.task) && story.task.length > 0) {
+        let isValid = false;
+        for (const subtask of story.task) {
+          for (const key of Object.keys(subtask)) {
+            if (checkKeys.includes(key) || key === subtask.Assignee) {
+              isValid = true;
+            } else {
+              isValid = false;
+              break;
             }
           }
           rowIndex++;
+          if (!isValid) {
+            let errMsg = `<tr><td>Someone wrote wrong value at line ${rowIndex}</td></tr>`;
+            arrErrorMsg.push(errMsg);
+          }
         }
+        rowIndex++;
       }
     }
-  } catch (error) {
-    console.error(`Lỗi trong quá trình đọc dữ liệu: ${error.message}`);
+    return arrErrorMsg;
   }
 };
 

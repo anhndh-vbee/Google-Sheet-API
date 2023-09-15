@@ -6,6 +6,7 @@ const { getDataFromSprintBacklog } = require("../readDataFromSheet");
 const { writeJiraIDForSheetSprintBacklog } = require("../writeDataToSheet");
 const { checkSheet } = require("../../utils/checkSheet");
 const { sendMail } = require("./emailService");
+const { validateSubtask } = require("./validateSprintBacklog");
 
 const checkAndCreateSubtaskForEachStory = async (value) => {
   const ids = [];
@@ -44,13 +45,38 @@ const checkAndCreateSubtaskForEachStory = async (value) => {
 const cronJobOnSprintBacklog = async () => {
   const data = await getDataFromSprintBacklog(constants.SHEETID);
   const check = checkSheet(data, constants.KEYSPRINTBACKLOG);
-
-  if (typeof check === "object") {
+  const checkSubtask = validateSubtask(data);
+  if (typeof check === "object" && checkSubtask && checkSubtask.length === 0) {
     const result = await checkAndCreateSubtaskForEachStory(check);
     if (result && result.length > 0) {
       writeJiraIDForSheetSprintBacklog(result);
     }
-  } else if (typeof check === "string") {
+  } else if (
+    typeof check === "object" &&
+    checkSubtask &&
+    checkSubtask.length > 0
+  ) {
+    const content = `
+      Some subtasks have wrong value
+      ${checkSubtask.join("")}
+    `;
+    sendMail(constants.EMAIL, content, "Sprint Backlog");
+  } else if (
+    typeof check === "string" &&
+    checkSubtask &&
+    checkSubtask.length > 0
+  ) {
+    const content = `
+      Some subtasks have wrong value
+      ${checkSubtask.join("")}
+    `;
+    const _content = `${check} ${content} `;
+    sendMail(constants.EMAIL, _content, "Sprint Backlog");
+  } else if (
+    typeof check === "string" &&
+    checkSubtask &&
+    checkSubtask.length === 0
+  ) {
     sendMail(constants.EMAIL, check, "Sprint Backlog");
   }
 };
