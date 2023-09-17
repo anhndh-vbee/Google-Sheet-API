@@ -64,9 +64,21 @@ function extractFieldAndGetValueByKey(data, key, fieldWantToGet) {
   return newArr;
 }
 
+/**
+ *
+ * @param {*} arr1
+ * @param {*} arr2
+ * @returns
+ */
+
+function isArraySubset(subset, superset) {
+  return subset.every((item) => superset.includes(item));
+}
+
 module.exports = {
   splitArrayBySize,
   flatArrayToGetValueByKey,
   mergeArrayWithKey,
   extractFieldAndGetValueByKey,
+  isArraySubset,
 };

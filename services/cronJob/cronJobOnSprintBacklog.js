@@ -6,10 +6,11 @@ const { getDataFromSprintBacklog } = require("../readDataFromSheet");
 const { writeJiraIDForSheetSprintBacklog } = require("../writeDataToSheet");
 const { checkSheet } = require("../../utils/checkSheet");
 const { sendMail } = require("./emailService");
-const { validateSubtask } = require("./validateSprintBacklog");
+const { validateTimeSpent } = require("./validateSprintBacklog");
 
 const checkAndCreateSubtaskForEachStory = async (value) => {
   const ids = [];
+  const listErr = [];
   for (const item of value) {
     const idStory = item["Jira ID"];
     const infoStroy = await getIssue(idStory);
@@ -21,23 +22,35 @@ const checkAndCreateSubtaskForEachStory = async (value) => {
     }
     ids.push(item["Jira ID"]);
     if (item.task && Array.isArray(item.task) && item.task.length > 0) {
-      for (const subtask of item.task) {
-        const id = subtask["Jira ID"];
-        const issueInfo = await getIssue(id);
+      for (const [index, subtask] of item.task) {
+        if (subtask.hasOwnProperty("Story")) {
+          const id = subtask["Jira ID"];
+          const issueInfo = await getIssue(id);
 
-        if (issueInfo === false) {
-          const newIssue = await createIssue(
-            subtask,
-            constants.SUBTASK,
-            item["Jira ID"]
+          if (issueInfo === false) {
+            const newIssue = await createIssue(
+              subtask,
+              constants.SUBTASK,
+              item["Jira ID"]
+            );
+            subtask["Jira ID"] = newIssue.key;
+          } else if (issueInfo) {
+            subtask["Jira ID"] = id;
+          }
+          ids.push(subtask["Jira ID"]);
+        } else {
+          ids.push(subtask["Jira ID"]);
+          listErr.push(
+            `<tr><td>Subtask number ${index + 1} of story ${
+              item["Jira ID"]
+            } misses some require field</td></tr>`
           );
-          subtask["Jira ID"] = newIssue.key;
-        } else if (issueInfo) {
-          subtask["Jira ID"] = id;
         }
-        ids.push(subtask["Jira ID"]);
       }
     }
+  }
+  if (listErr.length > 0) {
+    sendValidateMail(EMAIL, listErr.join(""), "Sprint Backlog");
   }
   return ids;
 };
@@ -45,7 +58,7 @@ const checkAndCreateSubtaskForEachStory = async (value) => {
 const cronJobOnSprintBacklog = async () => {
   const data = await getDataFromSprintBacklog(constants.SHEETID);
   const check = checkSheet(data, constants.KEYSPRINTBACKLOG);
-  const checkSubtask = validateSubtask(data);
+  const checkSubtask = validateTimeSpent(data);
   if (typeof check === "object" && checkSubtask && checkSubtask.length === 0) {
     const result = await checkAndCreateSubtaskForEachStory(check);
     if (result && result.length > 0) {

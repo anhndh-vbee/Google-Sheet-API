@@ -1,6 +1,6 @@
 const constants = require("../../configs/constants");
 
-const validateSubtask = (data) => {
+const validateTimeSpent = (data) => {
   if (data && data.length > 0) {
     const checkKeys = constants.KEYSUBTASK;
     let rowIndex = 8;
@@ -30,4 +30,4 @@ const validateSubtask = (data) => {
   }
 };
 
-module.exports = { validateSubtask };
+module.exports = { validateTimeSpent };

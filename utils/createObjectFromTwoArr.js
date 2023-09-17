@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {*} keys
+ * @param {*} values
+ * @returns
+ */
 const createObjectFromTwoArr = (keys, values) => {
   const obj = {};
 

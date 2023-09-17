@@ -1,6 +1,7 @@
 const { google } = require("googleapis");
 const { authorize } = require("../configs/authorize");
 const { createObjectFromTwoArr } = require("../utils/createObjectFromTwoArr");
+const constants = require("../configs/constants");
 
 const changeKeyObject = (obj) => {
   const updatedArray = obj.map((item) => {
@@ -29,7 +30,10 @@ const listStoryWithTask = (inputArray) => {
   let currentGroup = null;
 
   inputArray.forEach((item) => {
-    if (item.hasOwnProperty("User Story Title")) {
+    if (
+      item.hasOwnProperty("Issue Type") &&
+      item["Issue Type"] === constants.STORY
+    ) {
       currentGroup = {
         ...item,
         task: [],
@@ -46,7 +50,7 @@ const getDataFromPBI = async (spreadsheetId) => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
-  const range = "Test!A:L";
+  const range = "PBI";
 
   try {
     const result = await service.spreadsheets.values.get({

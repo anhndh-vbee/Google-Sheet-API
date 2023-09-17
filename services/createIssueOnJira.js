@@ -1,7 +1,10 @@
 const constants = require("../configs/constants");
 
+const convertToValidTime = (str) => str.replace(",", ".");
+
 const createIssue = async (data, typeIssue, parentID) => {
   let issue;
+  let timeSpent;
   if (parentID && typeIssue === constants.SUBTASK) {
     issue = {
       fields: {
@@ -21,6 +24,9 @@ const createIssue = async (data, typeIssue, parentID) => {
         },
       },
     };
+    if (data[`${data.Assignee}`]) {
+      timeSpent = `${convertToValidTime(data[`${data.Assignee}`])}h`;
+    }
   } else if (!parentID && typeIssue === constants.STORY) {
     issue = {
       fields: {
@@ -38,32 +44,61 @@ const createIssue = async (data, typeIssue, parentID) => {
       },
     };
   }
-
   const bodyData = `${JSON.stringify(issue)}`;
 
-  const result = fetch(
-    `https://${constants.DOMAIN}.atlassian.net/rest/api/2/issue`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Basic ${Buffer.from(
-          `${constants.EMAIL}:${constants.APIKEY}`
-        ).toString("base64")}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: bodyData,
+  try {
+    const response = await fetch(
+      `https://${constants.DOMAIN}.atlassian.net/rest/api/2/issue`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${Buffer.from(
+            `${constants.EMAIL}:${constants.APIKEY}`
+          ).toString("base64")}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: bodyData,
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Error creating issue: ${response.statusText}`);
     }
-  )
-    .then(async (response) => {
-      const res = await response.json();
-      return res;
-    })
-    .catch((err) => {
-      throw err;
-    });
+    const result = await response.json();
+    if (parentID && typeIssue === constants.SUBTASK && timeSpent) {
+      const worklogWithIssue = await fetch(
+        `https://${constants.DOMAIN}.atlassian.net/rest/api/2/issue/${result.key}/worklog`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Basic ${Buffer.from(
+              `${constants.EMAIL}:${constants.APIKEY}`
+            ).toString("base64")}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ timeSpent: timeSpent }),
+        }
+      );
 
-  return result;
+      if (!worklogWithIssue.ok) {
+        throw new Error(
+          `Error logging time spent: ${worklogWithIssue.statusText}`
+        );
+      }
+
+      const worklogResult = await worklogWithIssue.json();
+      const resultID = {
+        keyWorklog: worklogResult.id,
+        key: result.key,
+      };
+      return resultID;
+    }
+
+    return result;
+  } catch (error) {
+    throw error;
+  }
 };
 
 module.exports = { createIssue };

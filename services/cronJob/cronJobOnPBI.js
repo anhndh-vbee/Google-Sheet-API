@@ -41,8 +41,6 @@ const cronJobOnPBI = async () => {
   return;
 };
 
-cronJobOnPBI();
-
 const cronJob = new cron.CronJob("*/30 * * * *", async () => {
   const startDate = new Date();
   console.log(

@@ -32,7 +32,9 @@ const writeJiraIDForSheetSprintBacklog = async (data) => {
 
   if (data && data.length > 0) {
     let values = data?.map((item) => [item]);
-    let range = `TestSB!A8:A${data?.length + 7}`;
+    let range = `TestSB!A${constants.ROWSTART}:A${
+      data?.length + constants.ROWSTART - 1
+    }`;
 
     try {
       await service.spreadsheets.values.update({
