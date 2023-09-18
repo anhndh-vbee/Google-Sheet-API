@@ -2,6 +2,7 @@ const { google } = require("googleapis");
 const { authorize } = require("../configs/authorize");
 const { createObjectFromTwoArr } = require("../utils/createObjectFromTwoArr");
 const constants = require("../configs/constants");
+const { isArraySubset } = require("../utils/arrayUtils");
 
 const changeKeyObject = (obj) => {
   const updatedArray = obj.map((item) => {
@@ -46,11 +47,12 @@ const listStoryWithTask = (inputArray) => {
   return outputArray;
 };
 
-const getDataFromPBI = async (spreadsheetId) => {
+const getDataFromPBI = async () => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
-  const range = "PBI";
+  const spreadsheetId = constants.SHEETID;
+  const range = constants.PBI;
 
   try {
     const result = await service.spreadsheets.values.get({
@@ -72,28 +74,43 @@ const getDataFromPBI = async (spreadsheetId) => {
   }
 };
 
-const getDataFromSprintBacklog = async (spreadsheetId) => {
+const getDataFromSprintBacklog = async () => {
   const auth = await authorize();
   const service = google.sheets({ version: "v4", auth });
 
-  let ranges = ["TestSB!5:5", "TestSB!M4:X4", "TestSB!A8:X"];
+  const spreadsheetId = constants.SHEETID;
+  const range = constants.SPRINTBACKLOG;
 
   try {
-    const result = await service.spreadsheets.values.batchGet({
+    const result = await service.spreadsheets.values.get({
       spreadsheetId,
-      ranges,
+      range,
     });
-    const data = result.data.valueRanges.map((range) => range.values);
+    const data = result.data.values;
 
-    // danh sach header file sheet
-    const header = data[0][0];
-    header.push(...data[1][0]);
+    // header
+    const header = data.find((item) => item.includes("Jira ID"));
+    const listMemberOfSprint = data
+      .find((item) => isArraySubset(constants.MEMBERS, item))
+      .filter((subItem) => subItem !== "");
+    header.push(...listMemberOfSprint);
 
-    // data
-    const value = data[2];
-    const _value = value.map((item) => createObjectFromTwoArr(header, item));
-
-    return listStoryWithTask(_value);
+    // value
+    let value;
+    for (let i = 0; i < data.length; i++) {
+      if (
+        data[i].includes("AICall") ||
+        data[i].includes("AIVoice") ||
+        data[i].includes("Chung")
+      ) {
+        value = data.slice(i);
+        break;
+      }
+    }
+    if (value) {
+      const _value = value.map((item) => createObjectFromTwoArr(header, item));
+      return listStoryWithTask(_value);
+    }
   } catch (err) {
     throw err;
   }

@@ -59,6 +59,8 @@ module.exports = {
   DOMAIN: process.env.DOMAIN,
   APIKEY: process.env.APIKEY,
   SHEETID: process.env.SHEETID,
+  PBI: process.env.PBINAME,
+  SPRINTBACKLOG: process.env.SPRINTBACKLOG,
   EMAIL: process.env.EMAIL,
   PASS_EMAIL: process.env.PASS_EMAIL,
   PROJECTID: process.env.PROJECT_ID,

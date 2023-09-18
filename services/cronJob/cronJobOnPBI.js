@@ -26,7 +26,7 @@ const checkAndCreateIssue = async (value) => {
 };
 
 const cronJobOnPBI = async () => {
-  const data = await getDataFromPBI(constants.SHEETID);
+  const data = await getDataFromPBI();
   const check = checkSheet(data, constants.KEYPBI);
 
   if (typeof check === "object") {

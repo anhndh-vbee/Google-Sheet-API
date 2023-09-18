@@ -130,7 +130,7 @@ const createSubtasks = async (data, parentId) => {
 };
 
 const createStoriesFromPBI = async () => {
-  const value = await getDataFromPBI(constants.SHEETID);
+  const value = await getDataFromPBI();
 
   const check = checkSheet(value, constants.KEYPBI);
 
@@ -148,7 +148,7 @@ const createStoriesFromPBI = async () => {
 };
 
 const createIssuesFromSprintBacklog = async () => {
-  const data = await getDataFromSprintBacklog(constants.SHEETID);
+  const data = await getDataFromSprintBacklog();
   const check = checkSheet(data, constants.KEYSPRINTBACKLOG);
 
   if (typeof check === "object") {
