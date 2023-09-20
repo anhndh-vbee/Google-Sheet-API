@@ -1,7 +1,7 @@
 const { google } = require("googleapis");
+const constants = require("../configs/constants");
 const { authorize } = require("../configs/authorize");
 const { createObjectFromTwoArr } = require("../utils/createObjectFromTwoArr");
-const constants = require("../configs/constants");
 const { isArraySubset } = require("../utils/arrayUtils");
 
 const changeKeyObject = (obj) => {

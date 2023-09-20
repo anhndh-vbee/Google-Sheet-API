@@ -33,9 +33,10 @@ const checkAndCreateSubtaskForEachStory = async (value) => {
         } else {
           ids.push(subtask["Jira ID"]);
           listErr.push(
-            `<tr><td>Subtask number ${index + 1} of story ${
-              item["Jira ID"]
-            } misses some require field</td></tr>`
+            `<tr>
+            <td>Subtask number ${index + 1} of story ${item["Jira ID"]}</td>
+            <td>Misses require field</td>
+            </tr>`
           );
         }
       }
@@ -61,21 +62,15 @@ const cronJobOnSprintBacklog = async () => {
     checkSubtask &&
     checkSubtask.length > 0
   ) {
-    const content = `
-      Some subtasks have wrong value
-      ${checkSubtask.join("")}
-    `;
+    const content = `${checkSubtask.join("")}`;
     sendMail(constants.EMAIL, content, "Sprint Backlog");
   } else if (
     typeof check === "string" &&
     checkSubtask &&
     checkSubtask.length > 0
   ) {
-    const content = `
-      Some subtasks have wrong value
-      ${checkSubtask.join("")}
-    `;
-    const _content = `${check} ${content} `;
+    const content = `${checkSubtask.join("")}`;
+    const _content = `${check} ${content}`;
     sendMail(constants.EMAIL, _content, "Sprint Backlog");
   } else if (
     typeof check === "string" &&
@@ -84,24 +79,23 @@ const cronJobOnSprintBacklog = async () => {
   ) {
     sendMail(constants.EMAIL, check, "Sprint Backlog");
   }
+  return;
 };
 
-// const cronJob = new cron.CronJob("*/35 * * * *", async () => {
-//   const startDate = new Date();
-//   console.log(
-//     `Cron Job on Sprint Backlog start at ${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()} ${startDate.getDate()}-${
-//       startDate.getMonth() + 1
-//     }-${startDate.getFullYear()}`
-//   );
-//   await cronJobOnSprintBacklog();
-//   const endDate = new Date();
-//   console.log(
-//     `Cron Job on Sprint Backlog end at ${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()} ${endDate.getDate()}-${
-//       endDate.getMonth() + 1
-//     }-${endDate.getFullYear()}`
-//   );
-// });
+const cronJob = new cron.CronJob("*/35 * * * *", async () => {
+  const startDate = new Date();
+  console.log(
+    `Cron Job on Sprint Backlog start at ${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()} ${startDate.getDate()}-${
+      startDate.getMonth() + 1
+    }-${startDate.getFullYear()}`
+  );
+  await cronJobOnSprintBacklog();
+  const endDate = new Date();
+  console.log(
+    `Cron Job on Sprint Backlog end at ${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()} ${endDate.getDate()}-${
+      endDate.getMonth() + 1
+    }-${endDate.getFullYear()}`
+  );
+});
 
-// cronJob.start();
-
-cronJobOnSprintBacklog();
+cronJob.start();

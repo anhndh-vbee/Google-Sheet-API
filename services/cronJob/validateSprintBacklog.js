@@ -3,7 +3,7 @@ const constants = require("../../configs/constants");
 const validateTimeSpent = (data) => {
   if (data && data.length > 0) {
     const checkKeys = constants.KEYSUBTASK;
-    let rowIndex = 8;
+    let rowIndex = constants.ROWSTART;
     let arrErrorMsg = [];
     for (const story of data) {
       if (story.task && Array.isArray(story.task) && story.task.length > 0) {
@@ -19,7 +19,11 @@ const validateTimeSpent = (data) => {
           }
           rowIndex++;
           if (!isValid) {
-            let errMsg = `<tr><td>Someone wrote wrong value at line ${rowIndex}</td></tr>`;
+            let errMsg = `
+            <tr>
+            <td>Line ${rowIndex}</td>
+            <td>Wrong value (timespent)</td>
+            </tr>`;
             arrErrorMsg.push(errMsg);
           }
         }

@@ -30,94 +30,31 @@ const checkSheet = (data, keys) => {
   } else {
     if (keys === constants.KEYPBI) {
       const errorMessages = rowMissingKey.map((row) => {
-        return `<tr><td>Row ${
-          row.index + 2
-        } missing value of ${row.missingKeys.join(", ")}</td></tr>`;
+        return `
+        <tr>
+        <td>Row ${row.index + 2}</td>
+        <td>Miss value of ${row.missingKeys.join(", ")}</td>
+        </tr>`;
       });
-      const errMsg = `<tr>Some rows have missed some required keys:</tr>
-      ${errorMessages.join("")}`;
+      const errMsg = `${errorMessages.join("")}`;
 
       return errMsg;
     }
 
     if (keys === constants.KEYSPRINTBACKLOG) {
       const errorMessages = rowMissingKey.map((row) => {
-        return `<tr><td>Story number ${
-          row.index + 1
-        } missing value of ${row.missingKeys.join(", ")}</td></tr>`;
+        return `
+        <tr>
+        <td>Story number ${row.index + 1}</td>
+        <td>Miss value of ${row.missingKeys.join(", ")}</td>
+        </tr>`;
       });
 
-      const errMsg = `
-        <tr>Some stories have missed some required keys:</tr>
-        ${errorMessages.join("")}
-      `;
+      const errMsg = `${errorMessages.join("")}`;
 
       return errMsg;
     }
   }
 };
-
-// const spreadsheetId = constants.SHEETID;
-// let initTitleValues = {};
-
-// const trimTitleValues = (values) => {
-//   return values.map((value) => value.trim());
-// };
-
-// const getSheets = async () => {
-//   const auth = await authorize();
-//   const sheets = google.sheets({ version: "v4", auth });
-
-//   const response = await sheets.spreadsheets.get({
-//     spreadsheetId: spreadsheetId,
-//   });
-//   const sheetsList = response.data.sheets;
-//   for (const sheet of sheetsList) {
-//     const sheetName = sheet.properties.title;
-//     const range = `${sheetName}!1:1`;
-//     const valuesResponse = await sheets.spreadsheets.values.get({
-//       spreadsheetId: spreadsheetId,
-//       range: range,
-//     });
-
-//     const titleValues = trimTitleValues(valuesResponse.data.values[0]);
-//     initTitleValues[sheetName] = titleValues;
-//   }
-// };
-
-// getSheets();
-
-// // Kiểm tra giá trị dòng 1 trong các sheets sau 1h
-// async function checkColumnSheet() {
-//   const auth = await authorize();
-//   const sheets = google.sheets({ version: "v4", auth });
-
-//   const response = await sheets.spreadsheets.get({
-//     spreadsheetId: spreadsheetId,
-//   });
-//   const sheetsList = response.data.sheets;
-//   for (const sheet of sheetsList) {
-//     const sheetName = sheet.properties.title;
-//     const range = `${sheetName}!1:1`;
-//     const valuesResponse = await sheets.spreadsheets.values.get({
-//       spreadsheetId: spreadsheetId,
-//       range: range,
-//     });
-
-//     const currentTitleValues = trimTitleValues(valuesResponse.data.values[0]);
-//     const removedColumnNames = initTitleValues[sheetName].filter(
-//       (columnName) => !currentTitleValues.includes(columnName)
-//     );
-
-//     if (removedColumnNames.length > 0) {
-//       console.log(
-//         `Removed column: "${removedColumnNames.join(
-//           ", "
-//         )}" in Sheet "${sheetName}"`
-//       );
-//     }
-//     initTitleValues[sheetName] = currentTitleValues;
-//   }
-// }
 
 module.exports = { checkSheet };
